@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Github,
   Linkedin,
@@ -256,97 +256,126 @@ export default function App() {
           id="about"
           className="min-h-screen flex items-center relative overflow-hidden"
         >
-          {/* background grid */}
+          {/* Background grid */}
           <div
-            className="absolute inset-0 opacity-[0.04]"
+            className="absolute inset-0 opacity-[0.04] pointer-events-none"
             style={{
               backgroundImage:
                 "linear-gradient(#818cf8 1px, transparent 1px), linear-gradient(90deg, #818cf8 1px, transparent 1px)",
               backgroundSize: "48px 48px",
             }}
           />
-          {/* glow */}
-          <div className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-accent/8 blur-3xl pointer-events-none" />
 
-          <div className="max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center relative">
-            {/* text side */}
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border text-xs text-muted-foreground font-mono">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                IT Portfolio · Development · UI/UX Visual Design · Full Stack web development
-              </div>
+          {/* Purple side glows */}
+          <div className="absolute top-1/4 left-0 w-72 h-72 bg-primary/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
 
-              <div>
-                <p className="text-muted-foreground text-sm font-mono tracking-widest mb-3">
-                  Hello, I am
-                </p>
-                <h1
-                  className="text-5xl md:text-6xl font-bold leading-tight"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
-                >
-                  Alice{" "}
-                  <span className="text-accent">Dmello</span>
-                </h1>
-                <p className="text-xl text-muted-foreground mt-3 font-light">
-                  IT Student · Software Developer · UI/Visual Design · Full Stack web development
-                </p>
-              </div>
+          {/* Wide About card */}
+          <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-20 relative">
+            <div className="relative overflow-hidden rounded-3xl border border-accent/25 bg-card/80 backdrop-blur-sm shadow-2xl shadow-primary/10">
+              {/* Decorative corner glow */}
+              <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
 
-              <p className="text-muted-foreground leading-relaxed max-w-md">
-                I am an Information Technology undergraduate with project experience across full-stack web development, Python applications, machine learning, geospatial data analysis, and responsive interface design. I enjoy solving practical problems by combining software, data, and thoughtful user experiences.
-              </p>
+              <div className="relative px-6 py-12 sm:px-10 sm:py-16 lg:px-16 lg:py-20">
+                <div className="max-w-4xl space-y-7">
+                  {/* Intro label */}
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-background/40 text-xs sm:text-sm text-muted-foreground font-mono">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    IT Portfolio · Development · UI/UX Design · Full Stack Web Development
+                  </div>
 
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <MapPin size={14} />
-                Bandra West, Mumbai
-              </div>
+                  {/* Name and role */}
+                  <div>
+                    <p className="text-muted-foreground text-sm sm:text-base font-mono tracking-widest mb-4">
+                      Hello, I am
+                    </p>
+                    <h1
+                      className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight"
+                      style={{ fontFamily: "'Playfair Display', serif" }}
+                    >
+                      Alice <span className="text-accent">Dmello</span>
+                    </h1>
+                    <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mt-5 font-light leading-relaxed">
+                      IT Student · Software Developer · UI/Visual Design · Full Stack Web Development
+                    </p>
+                  </div>
 
-              <div className="flex items-center gap-3 flex-wrap">
-                <button
-                  onClick={() => scrollTo("contact")}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
-                >
-                  <Mail size={15} />
-                  Get in touch
-                </button>
-                <button
-                  onClick={() => scrollTo("projects")}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded border border-border text-foreground hover:border-accent/40 transition-colors"
-                >
-                  View My Work
-                  <ChevronRight size={15} />
-                </button>
-              </div>
+                  {/* About description */}
+                  <p className="text-muted-foreground text-base sm:text-lg leading-8 max-w-3xl">
+                    I am an Information Technology undergraduate with project experience across full-stack web development, Python applications, machine learning, geospatial data analysis, and responsive interface design. I enjoy solving practical problems by combining software, data, and thoughtful user experiences.
+                  </p>
 
-              <div className="flex items-center gap-4 pt-2">
-                {[
-                  { icon: Github, href: "https://github.com/AliceDmello", label: "GitHub" },
-                  { icon: Linkedin, href: "https://linkedin.com/in/alicedmello21", label: "LinkedIn" },
-                  { icon: Mail, href: "mailto:alicedmello21@gmail.com", label: "Email" },
-                ].map(({ icon: Icon, href, label }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    aria-label={label}
-                    className="w-9 h-9 rounded flex items-center justify-center border border-border text-muted-foreground hover:text-accent hover:border-accent/40 transition-colors"
-                  >
-                    <Icon size={16} />
-                  </a>
-                ))}
+                  {/* Location */}
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <MapPin size={16} className="text-accent" />
+                    Bandra West, Mumbai
+                  </div>
+
+                  {/* Action buttons */}
+                  <div className="flex items-center gap-4 flex-wrap pt-2">
+                    <button
+                      onClick={() => scrollTo("contact")}
+                      className="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 hover:-translate-y-0.5 transition-all"
+                    >
+                      <Mail size={16} />
+                      Get in touch
+                    </button>
+                    <button
+                      onClick={() => scrollTo("projects")}
+                      className="flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground hover:border-accent/50 hover:bg-primary/5 transition-all"
+                    >
+                      View My Work
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+
+                  {/* Social links */}
+                  <div className="flex items-center gap-3 pt-2">
+                    {[
+                      { icon: Github, href: "https://github.com/AliceDmello", label: "GitHub" },
+                      { icon: Linkedin, href: "https://linkedin.com/in/alicedmello21", label: "LinkedIn" },
+                      { icon: Mail, href: "mailto:alicedmello21@gmail.com", label: "Email" },
+                    ].map(({ icon: Icon, href, label }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        aria-label={label}
+                        className="w-11 h-11 rounded-lg flex items-center justify-center border border-border bg-background/50 text-muted-foreground hover:text-accent hover:border-accent/50 transition-all"
+                      >
+                        <Icon size={18} />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Skills strip */}
+                <div className="mt-12 pt-7 border-t border-border">
+                  <p className="text-xs font-mono tracking-widest text-muted-foreground mb-4">
+                    AREAS I WORK WITH
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    {[
+                      "React",
+                      "TypeScript",
+                      "Python",
+                      "Machine Learning",
+                      "UI/UX Design",
+                      "MongoDB",
+                    ].map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-4 py-2 rounded-full text-sm bg-background/60 border border-border text-muted-foreground hover:text-accent hover:border-accent/40 transition-colors"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+        </section>
 
-        {/* Profile photo */}
-<div className="relative w-full max-w-[360px] h-[320px] md:h-[420px] md:translate-x-8 rounded-[48px_20px_48px_20px] border-2 border-accent/60 p-2 shadow-2xl">
-  <img
-    src="/alice.jpeg"
-    alt="Alice Dmello"
-    className="block w-full h-full rounded-[40px_14px_40px_14px] object-contain object-center bg-white"
-  />
-</div>
-</div>
-</section>
         {/* ── EDUCATION ── */}
         <section id="education" className="py-24 border-t border-border">
           <div className="max-w-6xl mx-auto px-6">
